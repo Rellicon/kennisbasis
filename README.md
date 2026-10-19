@@ -1,37 +1,39 @@
-# Kennisbasis voor je AI-assistent
+# Kennisbasis for your AI assistant
 
-Een kleine uitbreiding die je AI-assistent een eigen notitieboek geeft: de **vault**. Daarmee kan de assistent bij een nieuw gesprek teruglezen wie je bent, wat je doet en waar je kennis staat. Het werkt met Claude, ChatGPT, Gemini en Mistral.
+**English** | [Nederlands](nl/README.md)
 
-Gemaakt door Wim Wessels, op basis van hoe hij zelf dagelijks met AI werkt. De volledige uitleg staat in de [wiki](https://github.com/Rellicon/kennisbasis/wiki).
+A small extension that gives your AI assistant a notebook of its own: the **vault**. At the start of every new conversation, the assistant can read back who you are, what you do and where your knowledge lives. It works with Claude, ChatGPT, Gemini and Mistral.
 
-## Voor wie
+Made by Wim Wessels, based on how he works with AI every day. The full explanation is in the [wiki](https://github.com/Rellicon/kennisbasis/wiki). The skills and the vault template are in Dutch for now.
 
-Voor particulieren en eenpitters: iedereen die alleen werkt en de eigen kennis wil vastleggen. Werk je in een team of een organisatie, dan is dit niet de juiste aanpak.
+## Who is it for
 
-**Let op:** de kennis die je met deze kennisbasis opbouwt, is persoonlijk. Deel je die met collega's of anderen, dan is dat op eigen risico. Je gebruikt je AI-assistent vaak ook voor privézaken of voor werk dat niet voor hen bedoeld is, en dat staat allemaal in hetzelfde notitieboek. Wil je kennis en gegevens professioneel structureren, regel dat dan op het niveau van je organisatie.
+For individuals and freelancers: anyone who works alone and wants to capture their own knowledge. If you work in a team or an organisation, this is not the right approach.
 
-## Snel beginnen met Claude
+**Note:** the knowledge you build with Kennisbasis is personal. Sharing it with colleagues or others is at your own risk. You probably also use your AI assistant for private matters or for work that is not meant for them, and all of it ends up in the same notebook. If you want to structure knowledge and data professionally, organise that at the level of your organisation.
 
-Je hebt Claude Pro of hoger nodig en de Claude-app voor Mac of Windows.
+## Quick start with Claude
 
-1. Klik linksonder op je naam en kies **Instellingen**, dan **Plug-ins**.
-2. Klik op **Voeg toe** en kies **Voeg marketplace toe**.
-3. Vul `Rellicon/kennisbasis` in, klik op **Synchroniseer** en installeer **Kennisbasis**.
-4. Open **Claude Code**, kies een map om in te werken en typ `/kennisbasis:kennis-intro`.
+You need Claude Pro or higher and the Claude app for Mac or Windows.
 
-Waarom Claude Code: daar kan Claude bij een map op je computer. In de gewone chat kan dat niet.
+1. Click your name in the bottom left and choose **Settings**, then **Plugins**.
+2. Click **Add** and choose **Add marketplace**.
+3. Enter `Rellicon/kennisbasis`, click **Sync** and install **Kennisbasis**.
+4. Open **Claude Code**, choose a folder to work in and type `/kennisbasis:kennis-intro`.
 
-Een video, de uitgebreide stappen en de routes voor ChatGPT, Codex, Gemini, Mistral en Claude Code in de terminal staan op [Installeren](https://github.com/Rellicon/kennisbasis/wiki/Installeren).
+Why Claude Code: there Claude can reach a folder on your computer. The ordinary chat cannot.
 
-## In de wiki
+A video, the detailed steps and the routes for ChatGPT, Codex, Gemini, Mistral and Claude Code in the terminal are on [Installation](https://github.com/Rellicon/kennisbasis/wiki/Installation).
 
-| Pagina | Waarover |
+## In the wiki
+
+| Page | About |
 |---|---|
-| [Voor wie](https://github.com/Rellicon/kennisbasis/wiki/Voor-wie) | Voor wie de kennisbasis bedoeld is, en voor wie niet |
-| [Wat heb je nodig](https://github.com/Rellicon/kennisbasis/wiki/Wat-heb-je-nodig) | Welk AI-programma, welk abonnement en welk gereedschap |
-| [Installeren](https://github.com/Rellicon/kennisbasis/wiki/Installeren) | Stap voor stap, per programma |
-| [Commando's](https://github.com/Rellicon/kennisbasis/wiki/Commandos) | Wat elk commando doet, en de wekelijkse controle |
-| [De vault](https://github.com/Rellicon/kennisbasis/wiki/De-vault) | Hoe het notitieboek eruitziet en waar de instellingen staan |
-| [Back-up](https://github.com/Rellicon/kennisbasis/wiki/Back-up) | Een cloudmap of een privé GitHub-repository |
-| [Privacy](https://github.com/Rellicon/kennisbasis/wiki/Privacy) | Wat er naar je AI-aanbieder gaat |
-| [Verwijderen](https://github.com/Rellicon/kennisbasis/wiki/Verwijderen) | De kennisbasis weghalen zonder je vault kwijt te raken |
+| [Who is it for](https://github.com/Rellicon/kennisbasis/wiki/Who-is-it-for) | Who Kennisbasis is meant for, and who it is not |
+| [What you need](https://github.com/Rellicon/kennisbasis/wiki/What-you-need) | Which AI program, which subscription and which tools |
+| [Installation](https://github.com/Rellicon/kennisbasis/wiki/Installation) | Step by step, per program |
+| [Commands](https://github.com/Rellicon/kennisbasis/wiki/Commands) | What each command does, and the weekly check |
+| [The vault](https://github.com/Rellicon/kennisbasis/wiki/The-vault) | What the notebook looks like and where the settings are |
+| [Backup](https://github.com/Rellicon/kennisbasis/wiki/Backup) | A cloud folder or a private GitHub repository |
+| [Privacy](https://github.com/Rellicon/kennisbasis/wiki/Privacy) | What goes to your AI provider |
+| [Uninstall](https://github.com/Rellicon/kennisbasis/wiki/Uninstall) | Removing Kennisbasis without losing your vault |

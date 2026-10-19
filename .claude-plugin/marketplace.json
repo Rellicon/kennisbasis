@@ -11,7 +11,7 @@
       "name": "kennisbasis",
       "source": "./",
       "description": "Geef je AI-assistent een eigen notitieboek (vault), zodat die elke sessie weet wie je bent, wat je doet en waar je kennis staat.",
-      "version": "0.3.4"
+      "version": "0.3.5"
     }
   ]
 }
