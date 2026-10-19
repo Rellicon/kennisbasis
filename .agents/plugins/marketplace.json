@@ -1,0 +1,20 @@
+{
+  "name": "rellicon",
+  "interface": {
+    "displayName": "Rellicon"
+  },
+  "plugins": [
+    {
+      "name": "kennisbasis",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

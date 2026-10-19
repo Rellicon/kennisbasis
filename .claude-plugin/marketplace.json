@@ -1,0 +1,17 @@
+{
+  "name": "rellicon",
+  "owner": {
+    "name": "Wim Wessels"
+  },
+  "metadata": {
+    "description": "Plugins van Rellicon voor werken met AI."
+  },
+  "plugins": [
+    {
+      "name": "kennisbasis",
+      "source": "./",
+      "description": "Geef je AI-assistent een eigen notitieboek (vault), zodat die elke sessie weet wie je bent, wat je doet en waar je kennis staat.",
+      "version": "0.3.3"
+    }
+  ]
+}

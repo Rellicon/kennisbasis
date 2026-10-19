@@ -1,0 +1,15 @@
+{
+  "name": "kennisbasis",
+  "version": "0.3.3",
+  "description": "Geef je AI-assistent een eigen notitieboek (vault), zodat die elke sessie weet wie je bent, wat je doet en waar je kennis staat. Met /kennis-intro, /catchup, /save-context, /vault en /kennis-tooling, plus een wekelijkse controle van de vault.",
+  "author": {
+    "name": "Wim Wessels"
+  },
+  "keywords": [
+    "kennis",
+    "vault",
+    "obsidian",
+    "geheugen",
+    "onboarding"
+  ]
+}
