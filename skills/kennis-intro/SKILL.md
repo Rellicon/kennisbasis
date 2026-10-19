@@ -70,7 +70,13 @@ Leg eerst uit, in eigen woorden:
 
 Stel dan een map voor en vraag of die goed is:
 
-- Standaard op de Mac: `~/Kennis` (een map Kennis direct in je thuismap, naast Documenten). Daar kan de wekelijkse controle zonder extra toestemming bij. Op Windows: `%USERPROFILE%\Kennis`.
+- Standaard: `~/Workspace/Knowledge`, een map Workspace direct in je thuismap (naast Documenten) met daarin de vault. Daar kan de wekelijkse controle zonder extra toestemming bij. Op Windows: `%USERPROFILE%\Workspace\Knowledge`.
+
+Geef er meteen deze tip bij:
+
+> **Tip:** zet je andere bestanden (PDF's, Word, offertes, foto's, exports) ernaast in `~/Workspace/Drive`. Dan heb je een map Workspace met twee helften: `Knowledge` voor de kennis, `Drive` voor de bestanden. De vault blijft zo gewone tekst: klein, snel te doorzoeken voor mij, en makkelijk te back-uppen. Grote bestanden maken zoeken traag, laten een back-up op GitHub snel vollopen en kan ik vanuit een notitie toch niet lezen. De uitzondering zijn afbeeldingen die je in een notitie wilt zien, zoals een screenshot die je erin plakt: die mogen in de vault, in de map `_Bijlagen`.
+
+Gebruikt de gebruiker Obsidian, zet dan in Obsidian bij Instellingen, Bestanden en links, "Standaardlocatie voor nieuwe bijlagen" op de map `_Bijlagen`. Dan komt een geplakte afbeelding vanzelf op de goede plek.
 - Werkt de gebruiker op meer computers: een map in iCloud Drive, Google Drive, OneDrive of Dropbox. Zeg dan eerlijk dat de Mac voor de wekelijkse controle een keer om toestemming vraagt, en dat je daar samen doorheen loopt.
 
 Controleer daarna zelf (niet vragen) of de gekozen map al bestaat en wat erin staat:
@@ -125,24 +131,42 @@ Kijk mee als de gebruiker een map noemt: toon de bovenste twee niveaus (alleen m
 - Hoeveel lopen er tegelijk, ongeveer?
 - Wat bewaar je per project: offertes, documenten, foto's, mails?
 
-Doe dan een voorstel voor een vaste projectmap, bijvoorbeeld:
+Doe dan een voorstel. Vault en Drive krijgen dezelfde indeling, zodat je bij elke notitie meteen weet waar de bestanden staan. Zo ziet dat eruit voor iemand die voor klanten werkt en ook eigen projecten heeft:
 
 ```
-~/Documents/Werk/
-  Klanten/<Klant>/<Project>/
-  Eigen/<Onderwerp>/
-  Administratie/
+~/Workspace/
+  Knowledge/                              de vault: kennis, gewone tekst
+    README.md
+    Over mij/Over mij.md
+    Klanten/
+      Klanten.md
+      BakkerijDeGoudenKorst/
+        BakkerijDeGoudenKorst.md       wie de klant is, contactpersonen, afspraken
+        NieuweWebsite/
+          NieuweWebsite.md               stand, besluiten, kennis, sessies
+    Projecten/
+      Projecten.md
+      BoekSchrijven/
+        BoekSchrijven.md
+    Kennis/  Sessies/  _Bijlagen/  _Prullenbak/  _Onderhoud/
+  Drive/                                  de bestanden
+    Klanten/
+      BakkerijDeGoudenKorst/
+        NieuweWebsite/
+          offerte-2026.pdf
+          logo.png
+    Projecten/
+      BoekSchrijven/
+    Administratie/
 ```
 
-of, voor iemand die rond onderwerpen werkt:
+- **Klanten** is voor werk voor een ander: `Klanten/<Klant>/<Project>/`. Een klant heeft een eigen notitie, elk project eronder ook.
+- **Projecten** is voor eigen werk en onderwerpen: `Projecten/<Project>/`.
+- Werkt de gebruiker niet voor klanten, laat `Klanten` dan weg. Werkt die alleen voor klanten, laat `Projecten` dan weg.
 
-```
-~/Documents/Werk/
-  <Onderwerp>/
-  Archief/
-```
+**Namen in PascalCase.** Leg uit waarom de mappen van klanten en projecten zo heten: woorden aan elkaar, elk met een hoofdletter, geen spaties of streepjes (`BakkerijDeGoudenKorst`, niet `Bakkerij De Gouden Korst`). Zonder spaties vul je een naam met de Tab-toets vanzelf aan, in de terminal en in Obsidian, zonder aanhalingstekens. De hoofdletters houden de woorden leesbaar, en de naam gaat goed in links, in cloudmappen en op elk besturingssysteem. De nette naam met spaties staat in de notitie zelf, als titel.
 
-Leg uit dat deze map voor de bestanden is (zoals een Drive) en de vault voor de kennis erover. Maak de mappen pas aan na een "ja". Verplaats nooit bestaande bestanden zonder dat de gebruiker per stap akkoord geeft; dat is een aparte klus voor een volgende sessie.
+Leg uit dat deze map voor de bestanden is (zoals een Drive) en de vault voor de kennis erover. Heeft de gebruiker de tip uit stap 2 overgenomen, dan is `~/Workspace/Drive` die map. Maak de mappen pas aan na een "ja". Verplaats nooit bestaande bestanden zonder dat de gebruiker per stap akkoord geeft; dat is een aparte klus voor een volgende sessie.
 
 Vraag tot slot welke twee of drie projecten of onderwerpen nu het meest spelen. Die zet je als eerste in de vault.
 
@@ -150,12 +174,14 @@ Vraag tot slot welke twee of drie projecten of onderwerpen nu het meest spelen. 
 
 Doe dit zelf, zeg kort wat je doet:
 
-1. Maak de hoofdmap met daarin `Over mij/`, `Projecten/`, `Kennis/`, `Sessies/`, `_Prullenbak/` en `_Onderhoud/`.
+1. Maak de hoofdmap met daarin `Over mij/`, `Klanten/` en/of `Projecten/` (wat de gebruiker in stap 4 koos), `Kennis/`, `Sessies/`, `_Bijlagen/`, `_Prullenbak/` en `_Onderhoud/`. Maak de bestandsmap met dezelfde indeling als die nog niet bestaat.
 2. Vul de sjablonen in uit de map `templates/vault/` naast deze skill:
    - `README.md` naar de hoofdmap van de vault.
    - `Over mij.md` naar `Over mij/Over mij.md`, ingevuld met de antwoorden uit stap 3 en 4.
-3. Maak `Projecten/Projecten.md`, `Kennis/Kennis.md` en `Sessies/Sessies.md`: elk een overzichtsnotitie met frontmatter (zie de skill `vault`), een zin over wat erin hoort en een link terug naar `[[README|vault]]`.
-4. Maak per genoemd project `Projecten/<Project>/<Project>.md` uit het sjabloon `project-sjabloon.md` in de map van de skill `vault` (de map `../vault/` naast deze skill).
+3. Maak `Klanten/Klanten.md` en/of `Projecten/Projecten.md`, `Kennis/Kennis.md` en `Sessies/Sessies.md`: elk een overzichtsnotitie met frontmatter (zie de skill `vault`), een zin over wat erin hoort en een link terug naar `[[README|vault]]`.
+4. Maak per genoemd project de projectnotitie uit het sjabloon `project-sjabloon.md` in de map van de skill `vault` (de map `../vault/` naast deze skill): `Klanten/<Klant>/<Project>/<Project>.md` voor klantwerk, met ook `Klanten/<Klant>/<Klant>.md` uit `klant-sjabloon.md`, of `Projecten/<Project>/<Project>.md` voor eigen werk. Vul `{{OUDER_LINK}}` met de link naar de klantnotitie of naar `[[Projecten/Projecten|Projecten]]`. Mapnamen in PascalCase, zie stap 4.
+
+   Koos de gebruiker maar een van `Klanten` en `Projecten`, haal de regel en de link naar de andere dan weg uit `README.md` en `Over mij.md`.
 5. Zet `Vault: <pad>` en `Bestanden: <pad>` in `~/.kennisbasis/instellingen.txt`.
 6. Draai `python3 <map van de skill vault>/scripts/onderhoud.py hubs` en daarna `controle`. Dat zet de lijsten in de overzichtsnotities klaar. Ontbreekt Python, start dan eerst `/kennis-tooling` en kom daarna hier terug.
 

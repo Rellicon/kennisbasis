@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kennisbasis",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Geef je AI-assistent een eigen notitieboek (vault), zodat die elke sessie weet wie je bent, wat je doet en waar je kennis staat. Met /kennis-intro, /catchup, /save-context, /vault en /kennis-tooling, plus een wekelijkse controle van de vault.",
   "author": {
     "name": "Wim Wessels"

@@ -9,7 +9,7 @@ tags: [project]
 
 # {{PROJECT}}
 
-Hoort bij [[Projecten/Projecten|Projecten]]. Over wie dit doet: [[Over mij/Over mij|Over mij]].
+Hoort bij {{OUDER_LINK}}. Over wie dit doet: [[Over mij/Over mij|Over mij]].
 
 {{WAT_IS_HET}}
 

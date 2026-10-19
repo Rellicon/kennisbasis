@@ -33,13 +33,13 @@ Lees `~/.kennisbasis/instellingen.txt` voor `Vault:` en de regel `Instructiebest
 
 ## Stap 2: Kies het project
 
-- Argument gegeven: zoek het in "Lopend werk" en in `<vault>/Projecten/`. Niet gevonden: noem de projecten die er wel zijn en vraag welke.
+- Argument gegeven: zoek het in "Lopend werk", in `<vault>/Klanten/` en in `<vault>/Projecten/`. Niet gevonden: noem de projecten die er wel zijn en vraag welke.
 - Geen argument: neem de regel met de nieuwste datum. Noem de andere hooguit kort in de openingszin.
 - `alles`: ga direct naar stap 4 met alleen de regels uit "Lopend werk".
 
 ## Stap 3: Lees de context (hooguit drie bestanden)
 
-1. `<vault>/Projecten/<Project>/<Project>.md`, vooral de secties "Stand" en "Besluiten".
+1. De projectnotitie (`<vault>/Klanten/<Klant>/<Project>/<Project>.md` of `<vault>/Projecten/<Project>/<Project>.md`), vooral de secties "Stand" en "Besluiten".
 2. De nieuwste sessienotitie van dat project (bovenste link onder "Sessies" in de projectnotitie, of de nieuwste in `<vault>/Sessies/` met dit project in de frontmatter).
 3. Alleen als de stand ernaar verwijst: een notitie uit `Kennis/` die nodig is om de volgende stap te snappen.
 

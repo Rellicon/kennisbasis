@@ -29,7 +29,7 @@ Twijfel je waar iets hoort? Dan is het antwoord niet memory, maar de vault.
 ## Leesroute
 
 1. Begin bij `README.md` in de hoofdmap van de vault.
-2. Elke map heeft een overzichtsnotitie met dezelfde naam als de map (`Projecten/Projecten.md`, `Projecten/Bakkerij/Bakkerij.md`). Volg de links naar beneden. **Raad geen paden.**
+2. Elke map heeft een overzichtsnotitie met dezelfde naam als de map (`Klanten/Klanten.md`, `Klanten/BakkerijDeGoudenKorst/BakkerijDeGoudenKorst.md`). Volg de links naar beneden. **Raad geen paden.**
 3. Zoeken mag, maar lees een gevonden notitie samen met de overzichtsnotitie van de map, zodat je de context meekrijgt.
 
 ## Indeling
@@ -38,8 +38,12 @@ Twijfel je waar iets hoort? Dan is het antwoord niet memory, maar de vault.
 <vault>/
   README.md               ingang, tabel van de mappen
   Over mij/Over mij.md    wie de gebruiker is, voorkeuren, geleerde lessen
+  Klanten/
+    Klanten.md            lijst van alle klanten
+    <Klant>/<Klant>.md    wie de klant is, contactpersonen, afspraken
+    <Klant>/<Project>/<Project>.md   stand, besluiten, kennis, sessies
   Projecten/
-    Projecten.md          lijst van alle projecten
+    Projecten.md          lijst van eigen projecten en onderwerpen
     <Project>/<Project>.md   stand, besluiten, kennis, sessies
   Kennis/
     Kennis.md             lijst van onderwerpen
@@ -47,11 +51,18 @@ Twijfel je waar iets hoort? Dan is het antwoord niet memory, maar de vault.
   Sessies/
     Sessies.md
     YYYY-MM-DD <onderwerp>.md
+  _Bijlagen/              afbeeldingen die in een notitie getoond worden
   _Prullenbak/            wat weg mag
   _Onderhoud/             rapport van de weekcontrole en moves.tsv
 ```
 
-Wordt een project groot, dan mag de projectmap extra notities krijgen (`Projecten/<Project>/afspraken.md`). De projectnotitie linkt ernaar.
+`Klanten` is voor werk voor een ander, `Projecten` voor eigen werk. Een vault kan een van beide hebben of allebei. Overal waar deze skills "de projectnotitie" zeggen, is dat `Klanten/<Klant>/<Project>/<Project>.md` of `Projecten/<Project>/<Project>.md`.
+
+**Namen.** Mappen en notities van klanten en projecten heten in PascalCase: woorden aan elkaar, elk met een hoofdletter, geen spaties (`BakkerijDeGoudenKorst`). Die vul je met Tab aan en ze breken niet in links of cloudmappen. De nette naam staat bij `title:` in de frontmatter en als kop in de notitie.
+
+**Bestanden.** De bestandsmap (`Bestanden:` in de instellingen, standaard `~/Workspace/Drive`) heeft dezelfde indeling: `Klanten/<Klant>/<Project>/`. In de vault staan alleen notities, en afbeeldingen die in een notitie getoond worden in `_Bijlagen/`. Al het andere hoort in de bestandsmap.
+
+Wordt een project groot, dan mag de projectmap extra notities krijgen (`Klanten/<Klant>/<Project>/planning.md`). De projectnotitie linkt ernaar.
 
 ## Regels voor elke notitie
 
@@ -66,7 +77,7 @@ Wordt een project groot, dan mag de projectmap extra notities krijgen (`Projecte
   ---
   ```
 - **Minstens twee links naar andere notities**, waarvan een naar de overzichtsnotitie van de map. Zo raakt niets zoek.
-- **Links met het volledige pad vanaf de hoofdmap**: `[[Projecten/Bakkerij/Bakkerij|Bakkerij]]`, niet `[[Bakkerij]]`. Een kale naam gaat mis zodra twee notities zo heten.
+- **Links met het volledige pad vanaf de hoofdmap**: `[[Klanten/BakkerijDeGoudenKorst/BakkerijDeGoudenKorst|Bakkerij De Gouden Korst]]`, niet `[[BakkerijDeGoudenKorst]]`. Een kale naam gaat mis zodra twee notities zo heten.
 - **Verwijzing naar een bestand buiten de vault**: het pad in backticks, `~/Documents/Werk/Bakkerij/offerte.pdf`.
 - **Bestandsnamen** zonder `# / \ : * ? " < > |`.
 - **Een onderwerp, een notitie.** Bestaat het onderwerp al, werk die notitie bij in plaats van een tweede te maken. Zoek dus eerst.
@@ -74,10 +85,10 @@ Wordt een project groot, dan mag de projectmap extra notities krijgen (`Projecte
 
 ## Een nieuw project
 
-1. Zoek of het project al bestaat in `Projecten/Projecten.md`.
-2. Maak `Projecten/<Project>/<Project>.md` uit `project-sjabloon.md` naast deze skill.
-3. Vraag waar de bestanden van dit project staan (of komen) en zet dat pad bij "Bestanden".
-4. Draai `hubs`, zodat het project in `Projecten/Projecten.md` verschijnt.
+1. Zoek of het project al bestaat in `Klanten/` of `Projecten/`.
+2. Is het werk voor een klant: maak `Klanten/<Klant>/<Project>/<Project>.md` uit `project-sjabloon.md` naast deze skill, met als `{{OUDER_LINK}}` de link naar de klantnotitie. Bestaat de klant nog niet, maak dan eerst `Klanten/<Klant>/<Klant>.md` uit `klant-sjabloon.md`. Is het eigen werk: `Projecten/<Project>/<Project>.md`, met als `{{OUDER_LINK}}` `[[Projecten/Projecten|Projecten]]`. Mapnamen in PascalCase, de nette naam bij `title:`.
+3. Zet bij "Bestanden" de map met dezelfde indeling in de bestandsmap (`<Bestanden>/Klanten/<Klant>/<Project>/`). Maak die map aan als hij er niet is.
+4. Draai `hubs`, zodat de klant en het project in de overzichtsnotities verschijnen.
 5. Zet een wegwijzer onder "Lopend werk" in het kennisbasis-blok van het instructiebestand (formaat in de skill `save-context`).
 
 ## Nieuwe kennis ("onthoud dit")

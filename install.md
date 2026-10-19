@@ -2,7 +2,7 @@
 
 Kopieer alles onder de streep en plak het in je AI-programma: Claude Code, Codex, Gemini CLI of Mistral Vibe. Open het programma eerst in de map waarin dit bestand staat, of noem het pad naar die map in je bericht.
 
-Deze handmatige route is voor lokale AI-programma's. Voor ChatGPT desktop installeer je de plugin via de route in README.md. Zonder lokale bestandstoegang werkt deze versie niet; een cloudcontainer is geen blijvende vault op je computer.
+Deze handmatige route is voor lokale AI-programma's. Voor ChatGPT desktop installeer je de plugin via de wiki: https://github.com/Rellicon/kennisbasis/wiki/Installeren. Zonder lokale bestandstoegang werkt deze versie niet; een cloudcontainer is geen blijvende vault op je computer.
 
 ---
 

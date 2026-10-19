@@ -8,7 +8,7 @@ tags: [profiel]
 
 # Over mij
 
-Terug naar de [[README|vault]]. Projecten staan in [[Projecten/Projecten|Projecten]].
+Terug naar de [[README|vault]]. Het werk staat in [[Klanten/Klanten|Klanten]] en [[Projecten/Projecten|Projecten]].
 
 ## Wie ik ben
 

@@ -27,7 +27,7 @@ Schrijf alleen op wat verloren gaat als je het niet opschrijft. De kennis gaat n
 Lees `~/.kennisbasis/instellingen.txt` voor `Vault:` en elke regel `Instructiebestand:` (gebruikt iemand de kennisbasis in meer AI-programma's, dan staan er meer). Lees in het instructiebestand van dit programma het blok tussen `<!-- kennisbasis:start -->` en `<!-- kennisbasis:end -->`.
 
 - Geen instellingen of geen blok: de kennisbasis is nog niet ingericht. Zeg dat en start `kennis-intro`. Stop hier.
-- `Intro: bezig`: dit is de eerste save, na de intro. Ga door met stap 2, met als project "Kennisbasis" en als onderwerp "Kennisbasis ingericht". Wat er veranderde: de vault is aangemaakt, het profiel staat erin, de projecten zijn aangemaakt. Maak daarvoor ook `Projecten/Kennisbasis/Kennisbasis.md` aan als die er niet is. Volgende stap: de eerstvolgende keer starten met `/catchup`.
+- `Intro: bezig`: dit is de eerste save, na de intro. Ga door met stap 2, met als project "Kennisbasis" en als onderwerp "Kennisbasis ingericht". Wat er veranderde: de vault is aangemaakt, het profiel staat erin, de projecten zijn aangemaakt. Maak daarvoor ook `Projecten/Kennisbasis/Kennisbasis.md` aan (titel "Kennisbasis") als die er niet is. Volgende stap: de eerstvolgende keer starten met `/catchup`.
 
 ## Stap 2: Bepaal project en delta
 
@@ -50,7 +50,7 @@ Kort houden: bullets, geen verslag van het gesprek.
 
 ## Stap 4: Projectnotitie bijwerken
 
-In `<vault>/Projecten/<Project>/<Project>.md`:
+In de projectnotitie (`<vault>/Klanten/<Klant>/<Project>/<Project>.md` of `<vault>/Projecten/<Project>/<Project>.md`):
 
 - **Stand**: status, volgende stap, open vragen. Vervang de oude waarden, laat geen geschiedenis staan.
 - **Besluiten**: voeg een regel toe per echt besluit (iets wat later niet per ongeluk teruggedraaid mag worden).
