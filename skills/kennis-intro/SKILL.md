@@ -58,6 +58,7 @@ Leg in hooguit zeven korte zinnen uit:
 - Het notitieboek is van gewone tekst, dus het werkt met elk AI-model: Claude, ChatGPT, Gemini of Mistral. Stap je later over, dan neem je je kennis gewoon mee.
 - Twee gewoontes maken het af: `/catchup` aan het begin van een sessie, `/save-context` aan het eind. Werkt de schuine streep niet in jouw programma, dan zeg je gewoon "catchup" of "save-context".
 - Dit notitieboek is voor je eigen kennis, als particulier of eenpitter. Werk je in een team, dan hoort kennis die je collega's nodig hebben op een gedeelde plek waar zij ook bij kunnen, niet in mijn notitieboek. **Let op:** wat we hier opbouwen is persoonlijk. Delen met collega's of anderen is op eigen risico, want je gebruikt mij vaak ook voor privézaken. Professionele kennis regel je beter op het niveau van je organisatie.
+- In het notitieboek staat ook een lijst met jouw eigen woorden en de mensen met wie je werkt. Zo snap ik wat je bedoelt als je "de planning" of "Kim" zegt, zonder dat je het elke keer uitlegt.
 - We gaan nu samen drie dingen regelen: waar het notitieboek komt, wie je bent, en hoe je je werk indeelt.
 
 Vraag daarna of de gebruiker klaar is om te beginnen.
@@ -114,6 +115,10 @@ Stel deze vragen een voor een. Vat elk antwoord in een zin samen en ga door; vra
 1. Hoe heet je, en wat doe je voor werk? (rol, vak, zelfstandig of in loondienst)
 2. Voor wie of waaraan werk je? (klanten, afdelingen, onderwerpen, een studie, een hobby)
 3. Hoe wil je dat ik met je praat? (kort of uitgebreid, formeel of los, taal, dingen die je irriteren)
+4. Met wie werk je het meest samen? Noem er twee of drie, met wie het zijn (collega, klant, leidinggevende, partner). Zeg erbij dat de gebruiker alleen voornamen en rollen hoeft te noemen, geen contactgegevens.
+5. Welke woorden, afkortingen of namen van systemen gebruik je vaak, die ik misschien niet ken of verkeerd zou begrijpen? Twee of drie is genoeg; de lijst groeit vanzelf. Geef als voorbeeld iets als "de PO" (projectoverleg) of de naam van een programma op het werk.
+
+Vraag 4 en 5 mag de gebruiker overslaan ("weet ik niet", "later"). Dan begint de lijst leeg en vul je hem aan zodra die woorden en mensen in gesprekken langskomen.
 
 ## Stap 4: Hoe deel je je projecten en bestanden in
 
@@ -148,6 +153,9 @@ Doe dan een voorstel. Vault en Drive krijgen dezelfde indeling, zodat je bij elk
       Projecten.md
       BoekSchrijven/
         BoekSchrijven.md
+    Definities/                           jouw woorden en de mensen met wie je werkt
+      Definities.md
+      Personen/Personen.md
     Kennis/  Sessies/  _Bijlagen/  _Prullenbak/  _Onderhoud/
   Drive/                                  de bestanden
     Klanten/
@@ -174,16 +182,18 @@ Vraag tot slot welke twee of drie projecten of onderwerpen nu het meest spelen. 
 
 Doe dit zelf, zeg kort wat je doet:
 
-1. Maak de hoofdmap met daarin `Over mij/`, `Klanten/` en/of `Projecten/` (wat de gebruiker in stap 4 koos), `Kennis/`, `Sessies/`, `_Bijlagen/`, `_Prullenbak/` en `_Onderhoud/`. Maak de bestandsmap met dezelfde indeling als die nog niet bestaat.
+1. Maak de hoofdmap met daarin `Over mij/`, `Klanten/` en/of `Projecten/` (wat de gebruiker in stap 4 koos), `Definities/` met daarin `Personen/`, `Kennis/`, `Sessies/`, `_Bijlagen/`, `_Prullenbak/` en `_Onderhoud/`. Maak de bestandsmap met dezelfde indeling als die nog niet bestaat.
 2. Vul de sjablonen in uit de map `templates/vault/` naast deze skill:
    - `README.md` naar de hoofdmap van de vault.
    - `Over mij.md` naar `Over mij/Over mij.md`, ingevuld met de antwoorden uit stap 3 en 4.
+   - `Definities.md` naar `Definities/Definities.md` en `Personen.md` naar `Definities/Personen/Personen.md`.
 3. Maak `Klanten/Klanten.md` en/of `Projecten/Projecten.md`, `Kennis/Kennis.md` en `Sessies/Sessies.md`: elk een overzichtsnotitie met frontmatter (zie de skill `vault`), een zin over wat erin hoort en een link terug naar `[[README|vault]]`.
 4. Maak per genoemd project de projectnotitie uit het sjabloon `project-sjabloon.md` in de map van de skill `vault` (de map `../vault/` naast deze skill): `Klanten/<Klant>/<Project>/<Project>.md` voor klantwerk, met ook `Klanten/<Klant>/<Klant>.md` uit `klant-sjabloon.md`, of `Projecten/<Project>/<Project>.md` voor eigen werk. Vul `{{OUDER_LINK}}` met de link naar de klantnotitie of naar `[[Projecten/Projecten|Projecten]]`. Mapnamen in PascalCase, zie stap 4.
 
    Koos de gebruiker maar een van `Klanten` en `Projecten`, haal de regel en de link naar de andere dan weg uit `README.md` en `Over mij.md`.
-5. Zet `Vault: <pad>` en `Bestanden: <pad>` in `~/.kennisbasis/instellingen.txt`.
-6. Draai `python3 <map van de skill vault>/scripts/onderhoud.py hubs` en daarna `controle`. Dat zet de lijsten in de overzichtsnotities klaar. Ontbreekt Python, start dan eerst `/kennis-tooling` en kom daarna hier terug.
+5. Maak per persoon uit vraag 4 van stap 3 een notitie in `Definities/Personen/` en per woord uit vraag 5 een notitie in `Definities/`, volgens de sectie "Definities en personen" van de skill `vault`. Koppel ze met `projecten:` aan de projecten uit stap 4 als dat duidelijk is.
+6. Zet `Vault: <pad>` en `Bestanden: <pad>` in `~/.kennisbasis/instellingen.txt`.
+7. Draai `python3 <map van de skill vault>/scripts/onderhoud.py hubs`, dan `definities` en daarna `controle`. Dat zet de lijsten in de overzichtsnotities en de tabellen met woorden en personen klaar. Toon de gebruiker kort de tabel met personen: zo ziet die meteen wat je onthoudt. Op Windows heet Python vaak `python` in plaats van `python3`. Ontbreekt Python, start dan eerst `/kennis-tooling` en kom daarna hier terug.
 
 Gebruik voor `{{DATUM}}` de datum van vandaag als `YYYY-MM-DD`.
 
@@ -224,6 +234,7 @@ Noem als afsluiting een of twee vervolgstappen, als keuze, niet als opdracht:
 
 - Bestaande notities, documenten of een oude map met kennis stap voor stap overzetten naar de vault.
 - Een project uitwerken: wie erbij betrokken is, afspraken, wat er speelt.
+- Een programma of systeem van het werk leren kennen: de gebruiker geeft de handleiding of een link, jij legt de begrippen vast in `Definities/` en hoe het werkt in `Kennis/`.
 
 ## Wat NIET
 

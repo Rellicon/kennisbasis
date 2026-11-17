@@ -7,7 +7,8 @@ Gebruik:
   python3 onderhoud.py fix-links [--vault PAD]   # kale [[naam]]-links aanvullen met het pad
   python3 onderhoud.py fix-moves [--vault PAD]   # verhuisde paden uit _Onderhoud/moves.tsv herschrijven
   python3 onderhoud.py fix-paths [--vault PAD]   # `pad` naar een vault-notitie omzetten in een link
-  python3 onderhoud.py week      [--vault PAD]   # fix-moves, hubs, fix-links, controle; rapport in _Onderhoud/
+  python3 onderhoud.py definities [--vault PAD]  # opzoektabellen in Definities/ en Definities/Personen/ bijwerken
+  python3 onderhoud.py week      [--vault PAD]   # fix-moves, hubs, fix-links, definities, controle; rapport in _Onderhoud/
 
 Zonder --vault leest het script de regel `Vault:` uit ~/.kennisbasis/instellingen.txt.
 
@@ -143,6 +144,157 @@ def cmd_hubs(K, out=print):
         if new != t:
             write(hubp, new)
     out(f"hubs: {len(hubs)} overzichtsnotities bijgewerkt, {len(created)} nieuw" + (f": {created[:5]}" if created else ""))
+    return 0
+
+
+# ---------- definities en personen ----------
+
+DEF_DIR = 'Definities'
+PERSON_DIR = 'Personen'
+DEF_MS, DEF_ME = "<!-- definities:auto -->", "<!-- /definities:auto -->"
+DEF_BLOCK_RE = re.compile(r'^[ \t]*<!-- definities:auto -->[ \t]*$.*?^[ \t]*<!-- /definities:auto -->[ \t]*$',
+                          re.S | re.M)
+
+
+def read_fm(path):
+    """Minimal frontmatter parser: `key: value`, `key: [a, b]` and block lists (`- item`).
+
+    Obsidian rewrites inline lists to block lists as soon as it touches a note, so both forms must work.
+    """
+    m = re.match(r'^---\n(.*?)\n---', read(path), re.S)
+    if not m:
+        return {}
+    fm, key = {}, None
+    for line in m.group(1).split('\n'):
+        item = re.match(r'^\s+-\s+(.*)$', line)
+        if item and key:
+            if not isinstance(fm.get(key), list):
+                fm[key] = [fm[key]] if fm.get(key) else []
+            fm[key].append(item.group(1).strip().strip('"\''))
+            continue
+        mm = re.match(r'^([A-Za-z_][A-Za-z0-9_-]*):\s*(.*)$', line)
+        if not mm:
+            continue
+        key, v = mm.group(1), mm.group(2).strip()
+        if v.startswith('[') and v.endswith(']'):
+            v = [x.strip().strip('"\'') for x in v[1:-1].split(',') if x.strip()]
+        else:
+            v = v.strip('"\'')
+        fm[key] = v
+    return fm
+
+
+def as_list(v):
+    if not v:
+        return []
+    return v if isinstance(v, list) else [v]
+
+
+def cell(v):
+    # A pipe would split the table cell.
+    return str(v).replace('|', '/').replace('\n', ' ').strip()
+
+
+def project_links(K):
+    """Map a project folder name (lowercase) to a link, so `projecten: [NieuweWebsite]` becomes clickable.
+
+    Links are only used inside table cells, so the alias pipe is escaped.
+    """
+    out = {}
+    for top in ('Projecten', 'Klanten'):
+        base = os.path.join(K, top)
+        if not os.path.isdir(base):
+            continue
+        for r, d, f in walk(base):
+            name = os.path.basename(r)
+            if r != base and f"{name}.md" in f:
+                out.setdefault(name.lower(), f"[[{vr(K, os.path.join(r, name))}\\|{name}]]")
+    return out
+
+
+def notes_in(folder, skip_subdirs=()):
+    out = []
+    if not os.path.isdir(folder):
+        return out
+    hub = os.path.basename(folder) + '.md'
+    for r, d, f in walk(folder):
+        d[:] = [x for x in d if os.path.join(r, x) not in skip_subdirs]
+        for n in sorted(f):
+            if n.endswith('.md') and n != os.path.basename(r) + '.md' and n != hub:
+                out.append(os.path.join(r, n))
+    return out
+
+
+def replace_def_block(path, block):
+    t = read(path)
+    t = DEF_BLOCK_RE.sub(lambda _: block, t, count=1) if DEF_BLOCK_RE.search(t) else t.rstrip() + "\n\n" + block + "\n"
+    write(path, t)
+
+
+def cmd_definities(K, out=print):
+    """Build the lookup tables in Definities/Definities.md and Definities/Personen/Personen.md."""
+    def_dir = os.path.join(K, DEF_DIR)
+    def_hub = os.path.join(def_dir, DEF_DIR + '.md')
+    if not os.path.exists(def_hub):
+        out(f"definities: geen {DEF_DIR}/{DEF_DIR}.md, overgeslagen")
+        return 0
+    person_dir = os.path.join(def_dir, PERSON_DIR)
+    projects = project_links(K)
+    warn = []
+
+    def proj_cell(fm):
+        return ', '.join(projects.get(p.lower(), p) for p in as_list(fm.get('projecten')))
+
+    note = "> Automatisch bijgewerkt door de wekelijkse controle. Niet met de hand aanpassen."
+
+    groups = {}
+    terms = notes_in(def_dir, skip_subdirs=(person_dir,))
+    for p in terms:
+        fm = read_fm(p)
+        term = fm.get('title') or os.path.splitext(os.path.basename(p))[0]
+        if not fm.get('kort'):
+            warn.append(f"{vr(K, p)}: geen kort")
+        alias = as_list(fm.get('synoniemen')) + as_list(fm.get('schrijfwijzen'))
+        cat = (fm.get('categorie') or 'overig').strip().lower()
+        groups.setdefault(cat, []).append(
+            (term.lower(), f"| [[{vr(K, p)[:-3]}\\|{cell(term)}]] | {cell(', '.join(alias))} "
+                           f"| {cell(fm.get('kort', ''))} | {proj_cell(fm)} |"))
+    lines = [DEF_MS, "", note, ""]
+    for cat in sorted(groups, key=lambda c: (c == 'overig', c)):
+        lines += [f"### {cat.capitalize()}", "",
+                  "| Woord | Wat ik ook zeg of typ | Betekenis | Projecten |", "| --- | --- | --- | --- |"]
+        lines += [row for _, row in sorted(groups[cat])]
+        lines.append("")
+    if not terms:
+        lines += ["Nog geen woorden.", ""]
+    lines.append(DEF_ME)
+    replace_def_block(def_hub, "\n".join(lines))
+
+    persons = notes_in(person_dir)
+    person_hub = os.path.join(person_dir, PERSON_DIR + '.md')
+    if os.path.exists(person_hub):
+        rows = []
+        for p in persons:
+            fm = read_fm(p)
+            name = fm.get('title') or os.path.splitext(os.path.basename(p))[0]
+            if not fm.get('kort'):
+                warn.append(f"{vr(K, p)}: geen kort")
+            rows.append((name.lower(),
+                         f"| [[{vr(K, p)[:-3]}\\|{cell(name)}]] | {cell(', '.join(as_list(fm.get('synoniemen'))))} "
+                         f"| {cell(fm.get('rol', ''))} | {cell(fm.get('organisatie', ''))} "
+                         f"| {cell(fm.get('kort', ''))} | {proj_cell(fm)} |"))
+        lines = [DEF_MS, "", note, ""]
+        if rows:
+            lines += ["| Naam | Ook genoemd | Rol | Organisatie | Wie het is | Projecten |",
+                      "| --- | --- | --- | --- | --- | --- |"] + [r for _, r in sorted(rows)] + [""]
+        else:
+            lines += ["Nog geen personen.", ""]
+        lines.append(DEF_ME)
+        replace_def_block(person_hub, "\n".join(lines))
+
+    out(f"definities: {len(terms)} woorden, {len(persons)} personen" + (f", {len(warn)} zonder korte uitleg" if warn else ""))
+    for w in warn:
+        out(f"  [let op] {w}")
     return 0
 
 
@@ -447,6 +599,7 @@ def cmd_week(K):
     cmd_fixmoves(K, out)
     cmd_hubs(K, out)
     cmd_fixlinks(K, out)
+    cmd_definities(K, out)
     code, findings, count = cmd_controle(K, out)
 
     d = os.path.join(K, MAINTENANCE_DIR)
@@ -468,7 +621,7 @@ def cmd_week(K):
 
 def main():
     ap = argparse.ArgumentParser(description="Onderhoud voor de vault van de kennisbasis.")
-    ap.add_argument('command', choices=['controle', 'hubs', 'fix-links', 'fix-moves', 'fix-paths', 'week'])
+    ap.add_argument('command', choices=['controle', 'hubs', 'fix-links', 'fix-moves', 'fix-paths', 'definities', 'week'])
     ap.add_argument('--vault', default=None)
     args = ap.parse_args()
     K = vault_path(args)
@@ -477,7 +630,8 @@ def main():
     if args.command == 'week':
         sys.exit(cmd_week(K))
     sys.exit({'hubs': cmd_hubs, 'fix-links': cmd_fixlinks,
-              'fix-moves': cmd_fixmoves, 'fix-paths': cmd_fixpaths}[args.command](K))
+              'fix-moves': cmd_fixmoves, 'fix-paths': cmd_fixpaths,
+              'definities': cmd_definities}[args.command](K))
 
 
 if __name__ == '__main__':

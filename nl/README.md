@@ -2,7 +2,7 @@
 
 [English](../README.md) | **Nederlands**
 
-Een kleine uitbreiding die je AI-assistent een eigen notitieboek geeft: de **vault**. Daarmee kan de assistent bij een nieuw gesprek teruglezen wie je bent, wat je doet en waar je kennis staat. Het werkt met Claude, ChatGPT, Gemini en Mistral.
+Een kleine uitbreiding die je AI-assistent een eigen notitieboek geeft: de **vault**. Daarmee kan de assistent bij een nieuw gesprek teruglezen wie je bent, wat je doet en waar je kennis staat. Ook houdt die een lijst bij van jouw eigen woorden en de mensen met wie je werkt, zodat die snapt wat je bedoelt zonder dat je het elke keer uitlegt. Het werkt met Claude, ChatGPT, Gemini en Mistral.
 
 Gemaakt door Wim Wessels, op basis van hoe hij zelf dagelijks met AI werkt. De volledige uitleg staat in de [wiki](https://github.com/Rellicon/kennisbasis/wiki/Nederlands).
 

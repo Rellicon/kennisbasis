@@ -58,7 +58,7 @@ In de projectnotitie (`<vault>/Klanten/<Klant>/<Project>/<Project>.md` of `<vaul
 - `updated:` in de frontmatter op vandaag.
 - Is het project klaar: status `afgerond` en de regel uit "Lopend werk" halen (stap 5).
 
-Nieuwe kennis die los van dit project bruikbaar is (een begrip, een persoon, hoe iets werkt) gaat naar een eigen notitie in `Kennis/`, volgens de skill `vault`.
+Nieuwe kennis die los van dit project bruikbaar is gaat naar een eigen notitie, volgens de skill `vault`: een woord of afkorting naar `Definities/`, een persoon die terugkomt naar `Definities/Personen/`, hoe iets werkt naar `Kennis/`. Draai daarna `definities`, zodat de tabellen kloppen.
 
 ## Stap 5: Wegwijzer in het instructiebestand
 

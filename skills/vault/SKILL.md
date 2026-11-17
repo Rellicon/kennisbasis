@@ -1,6 +1,6 @@
 ---
 name: vault
-description: "Lees, schrijf en onderhoud notities in de ingerichte lokale kennisbasis (vault): leesroute, regels voor notities en links, een nieuw project of nieuwe kennis toevoegen, verhuizen zonder links te breken, onderhoud met scripts/onderhoud.py en de wekelijkse controle. Gebruik bij elke lees-, schrijf- of onderhoudsactie in de vault; niet voor willekeurige bestanden of andere kluizen. Triggers op /vault, zet dit in de vault, onthoud dit, maak een notitie, nieuw project, waar staat dat, ruim de vault op, controleer de vault, weekcontrole."
+description: "Lees, schrijf en onderhoud notities in de ingerichte lokale kennisbasis (vault): leesroute, regels voor notities en links, een nieuw project of nieuwe kennis toevoegen, woorden en personen in de definities, verhuizen zonder links te breken, onderhoud met scripts/onderhoud.py en de wekelijkse controle. Gebruik bij elke lees-, schrijf- of onderhoudsactie in de vault; niet voor willekeurige bestanden of andere kluizen. Triggers op /vault, zet dit in de vault, onthoud dit, maak een notitie, nieuw project, zet dit in de definities, wie is, wat bedoel ik met, waar staat dat, ruim de vault op, controleer de vault, weekcontrole."
 ---
 
 # /vault
@@ -45,9 +45,15 @@ Twijfel je waar iets hoort? Dan is het antwoord niet memory, maar de vault.
   Projecten/
     Projecten.md          lijst van eigen projecten en onderwerpen
     <Project>/<Project>.md   stand, besluiten, kennis, sessies
+  Definities/
+    Definities.md         de vertaaltabel: woorden en afkortingen van de gebruiker
+    <Woord>.md            een woord per notitie
+    Personen/
+      Personen.md         tabel van de mensen die steeds terugkomen
+      <Naam>.md           een persoon per notitie
   Kennis/
     Kennis.md             lijst van onderwerpen
-    <onderwerp>.md        een begrip, persoon of werkwijze per notitie
+    <onderwerp>.md        hoe iets werkt: een werkwijze, een tool, een stappenplan
   Sessies/
     Sessies.md
     YYYY-MM-DD <onderwerp>.md
@@ -95,7 +101,36 @@ Wordt een project groot, dan mag de projectmap extra notities krijgen (`Klanten/
 
 - Over de gebruiker of hoe die wil werken: `Over mij/Over mij.md`, sectie "Geleerde lessen", een regel met datum.
 - Over een project: de sectie "Kennis" of "Besluiten" van dat project.
-- Los bruikbaar (een begrip, een persoon, een werkwijze): een notitie in `Kennis/` met een link in `Kennis/Kennis.md` en een link vanuit het project waar het vandaan kwam.
+- Een woord, afkorting of naam van iets: een definitie, zie hieronder.
+- Een persoon die steeds terugkomt: een persoon in de definities, zie hieronder.
+- Hoe iets werkt (een werkwijze, een tool, een stappenplan): een notitie in `Kennis/` met een link in `Kennis/Kennis.md` en een link vanuit het project waar het vandaan kwam.
+
+## Definities en personen
+
+De map `Definities/` is de vertaaltabel tussen de gebruiker en jou. Twee doelen: jij snapt de gebruiker beter (de eigen woorden, afkortingen en tikfouten), en je weet wie wie is en bij welk project die hoort.
+
+**Opzoeken.** Gebruikt de gebruiker een woord, afkorting of naam die je niet plaatst, of die net naast iets ligt wat je kent: lees eerst de tabel onderaan `Definities/Definities.md` en, bij een naam, die in `Definities/Personen/Personen.md`. Twee bestanden, een keer lezen, alle synoniemen en schrijfwijzen staan erin. Pas als het daar niet staat, vraag je het. Krijg je antwoord, leg het dan meteen vast.
+
+**Een woord toevoegen** ("zet X in de definities", of je leerde net wat X betekent):
+
+1. Zoek eerst in de tabel of het woord er al staat, ook onder een synoniem. Zo ja: werk die notitie bij.
+2. Maak `Definities/<Woord>.md` uit `definitie-sjabloon.md` naast deze skill. De bestandsnaam is het woord zelf, met hoofdletter en spaties (de PascalCase-regel geldt alleen voor mappen van klanten en projecten).
+3. Vul de velden:
+   - `categorie`: een woord om op te groeperen, bijvoorbeeld `werk`, `afkorting`, `tool`, `organisatie` of `prive`. Kijk welke categorieen de tabel al heeft en hergebruik die.
+   - `synoniemen`: wat de gebruiker ook zegt voor hetzelfde.
+   - `schrijfwijzen`: hoe de gebruiker het per ongeluk typt.
+   - `projecten`: de mapnamen van de projecten waar het bij hoort (`[NieuweWebsite]`), of leeg.
+   - `kort`: een regel uitleg, zonder `|`. Dit komt in de tabel.
+   - Lege velden mogen blijven staan als `[]` of `""`.
+4. Onder de kop mag alles: waar het woord vandaan komt, wanneer de gebruiker het gebruikt, een voorbeeld.
+
+**Een persoon toevoegen** ("zet Kim bij de personen", of iemand komt voor de tweede keer terug): `Definities/Personen/<Naam>.md` uit `persoon-sjabloon.md`. Velden `rol`, `organisatie`, `synoniemen` (bijnamen, hoe de gebruiker de persoon ook noemt), `projecten` en `kort`. Zet onder "Zie ook" ook een link naar elk project, en zet de persoon in de projectnotitie onder "Kennis" of in de klantnotitie onder "Contactpersonen" als link. Iemand die maar een keer voorkomt, krijgt geen notitie hier maar een regel in de projectnotitie.
+
+**Geen contactgegevens of geheimen** zonder dat de gebruiker erom vraagt: een telefoonnummer of adres zet je er alleen in op verzoek, wachtwoorden en medische gegevens nooit.
+
+**De tabellen** staan tussen `<!-- definities:auto -->` en `<!-- /definities:auto -->`. Die zijn van het script: draai `definities` na elke nieuwe of gewijzigde notitie, nooit met de hand bijwerken.
+
+**Ontbreekt `Definities/`** in een vault die met een oudere versie is ingericht: maak `Definities/Definities.md` en `Definities/Personen/Personen.md` uit de sjablonen in de map `templates/vault/` van de skill `kennis-intro`, voeg in het kennisbasis-blok van elk instructiebestand regel 7 toe zoals in `templates/instructie-blok.md` van die skill, en draai `hubs` en `definities`. Doe dat na een "ja" van de gebruiker, en kijk of er al personen of begrippen in `Kennis/` staan die beter in `Definities/` passen (verhuizen volgens "Verhuizen of hernoemen", ook na een "ja").
 
 Zeg na het schrijven in een regel waar het staat.
 
@@ -119,7 +154,8 @@ python3 "$S" hubs        # lijsten in de overzichtsnotities bijwerken
 python3 "$S" fix-links   # kale [[naam]]-links aanvullen met het pad
 python3 "$S" fix-moves   # verhuisde paden herschrijven (zie "Verhuizen")
 python3 "$S" fix-paths   # `pad` naar een vault-notitie omzetten in een link
-python3 "$S" week        # fix-moves, hubs, fix-links, controle; rapport in _Onderhoud/laatste-controle.md
+python3 "$S" definities  # de tabellen in Definities/ en Definities/Personen/ bijwerken
+python3 "$S" week        # fix-moves, hubs, fix-links, definities, controle; rapport in _Onderhoud/laatste-controle.md
 ```
 
 - **Overzichtsnotities** hebben een blok tussen `<!-- hub:auto -->` en `<!-- /hub:auto -->`. Dat blok is van het script: nooit met de hand aanpassen, draai `hubs`. Eigen uitleg staat boven het blok.
@@ -188,5 +224,6 @@ Uitzetten: Mac `launchctl bootout gui/$(id -u)/nl.kennisbasis.onderhoud` en het 
 
 - **Een lege of bijna lege map die vol hoort te zijn is een alarm.** Meld het en stop. Vul een gat nooit op met verzonnen inhoud.
 - **Synchronisatie (iCloud, Drive, Obsidian Sync) kan na een verhuizing oude mappen terugzetten.** Kijk na een verhuizing nog een keer of de oude map leeg is.
-- **Overzichtsnotities raken achter** als je een notitie maakt en `hubs` vergeet. Draai het meteen na elke nieuwe notitie.
+- **Overzichtsnotities raken achter** als je een notitie maakt en `hubs` vergeet. Draai het meteen na elke nieuwe notitie, en `definities` na een nieuw woord of een nieuwe persoon.
+- **Een woord dubbel vastleggen** gebeurt als je alleen op de bestandsnaam zoekt. Zoek ook in de kolom met synoniemen en schrijfwijzen.
 - **Een overzichtsnotitie helemaal overschrijven wist het hub-blok.** Draai daarna altijd `hubs`.

@@ -43,6 +43,8 @@ Lees `~/.kennisbasis/instellingen.txt` voor `Vault:` en de regel `Instructiebest
 2. De nieuwste sessienotitie van dat project (bovenste link onder "Sessies" in de projectnotitie, of de nieuwste in `<vault>/Sessies/` met dit project in de frontmatter).
 3. Alleen als de stand ernaar verwijst: een notitie uit `Kennis/` die nodig is om de volgende stap te snappen.
 
+Staat er in de stand een woord of naam die je niet plaatst, kijk dan in de tabel van `Definities/Definities.md` of `Definities/Personen/Personen.md`. Die telt niet mee voor de drie bestanden.
+
 Lees `Over mij/Over mij.md` niet standaard; het korte profiel in het blok is genoeg. Lees het alleen als de vraag over de gebruiker zelf gaat.
 
 Kloppen de wegwijzer in het blok en de stand in de projectnotitie niet met elkaar, dan wint de projectnotitie: daar kan ook een ander AI-programma in geschreven hebben. Noem het verschil en werk de wegwijzer bij.
@@ -68,6 +70,10 @@ Staat `Weekcontrole: aan` in het blok, kijk dan naar `<vault>/_Onderhoud/laatste
 - Ouder dan acht dagen of afwezig: de planner draaide niet. Draai zelf `python3 <map van de skill vault>/scripts/onderhoud.py week` en zeg in een regel dat de weekcontrole niet vanzelf liep, met een verwijzing naar de skill `vault` om het na te kijken.
 - Rapport met bevindingen (hooguit een keer per gesprek noemen): een regel onder de stand, bijvoorbeeld "De weekcontrole vond 3 punten in je vault. Zeg 'controleer de vault' om ze samen op te lossen."
 - Schoon: niets melden.
+
+## Stap 4c: Definities ontbreken
+
+Heeft de vault geen map `Definities/` (ingericht met een oudere versie), zeg dan een keer per gesprek in een regel: "Nieuw: ik kan een lijst bijhouden van jouw woorden en de mensen met wie je werkt. Zeg 'zet de definities aan' om dat in te richten." Bij ja: volg "Ontbreekt `Definities/`" in de skill `vault`.
 
 ## Stap 5: Gewoonte-reminder
 

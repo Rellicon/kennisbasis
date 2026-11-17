@@ -2,7 +2,7 @@
 
 **English** | [Nederlands](nl/README.md)
 
-A small extension that gives your AI assistant a notebook of its own: the **vault**. At the start of every new conversation, the assistant can read back who you are, what you do and where your knowledge lives. It works with Claude, ChatGPT, Gemini and Mistral.
+A small extension that gives your AI assistant a notebook of its own: the **vault**. At the start of every new conversation, the assistant can read back who you are, what you do and where your knowledge lives. It also keeps a list of your own words and the people you work with, so it understands what you mean without you explaining it every time. It works with Claude, ChatGPT, Gemini and Mistral.
 
 Made by Wim Wessels, based on how he works with AI every day. The full explanation is in the [wiki](https://github.com/Rellicon/kennisbasis/wiki). The skills and the vault template are in Dutch for now.
 

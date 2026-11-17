@@ -22,6 +22,7 @@ Het volledige profiel staat in `{{VAULT_PAD}}/Over mij/Over mij.md`. Lees dat zo
 4. **Niets weggooien zonder te vragen.** Moet er iets weg, verplaats het dan naar `{{VAULT_PAD}}/_Prullenbak` en zeg dat.
 5. **Geen geheimen in de vault.** Geen wachtwoorden, pincodes, sleutels of medische gegevens.
 6. **Ik ben geen developer.** Leg technische stappen in gewone taal uit, een stap per keer, en zeg wat ik moet zien als het goed ging.
+7. **Ken mijn woorden en mijn mensen.** Gebruik ik een woord, afkorting of naam die je niet plaatst, kijk dan eerst in de tabellen van `{{VAULT_PAD}}/Definities/Definities.md` en `{{VAULT_PAD}}/Definities/Personen/Personen.md` voor je het vraagt. Leer je iets nieuws over een woord of een persoon, leg het daar vast volgens de skill `vault`.
 
 ## Gewoonte-reminder
 
